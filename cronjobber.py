@@ -1,7 +1,7 @@
 #! /bin/env python3
 
 """
-   Cron jobber that takes tasks to execute at a certain time and executes them.
+    Cron jobber that takes tasks to execute at a certain time and executes them.
     Copyright (C) 2019  Noel Kuntze <noel.kuntze@thermi.consulting>
 
     This program is free software: you can redistribute it and/or modify
