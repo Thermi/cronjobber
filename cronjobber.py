@@ -101,14 +101,6 @@ class CronJobber():
                         self.__wakeup_thread.start()
                     return next_job.run()
 
-    def set_wakeup_next(self):
-        with self.__lock:
-            if self.__wakeup_thread:
-                self.__wakeup_thread.cancel()
-                self.__wakeup_thread = None
-            self.__wakeup_thread = threading.Timer(self.__get_seconds_to_next_wakeup(), self.run_job)
-            self.__wakeup_thread.start()
-
 if __name__ == '__main__':
     def test(funcs_and_args: tuple):
         print("%s: %s" % (funcs_and_args[1][0], datetime.datetime.now()))
@@ -120,7 +112,6 @@ if __name__ == '__main__':
     CRON.add_job(datetime.datetime.now()+datetime.timedelta(seconds=13), test, ((print, ), (5, )))
     CRON.add_job(datetime.datetime.now()+datetime.timedelta(seconds=16), test, ((print, ), (6, )))
     CRON.add_job(datetime.datetime.now()+datetime.timedelta(seconds=3), test, ((print, ), (3, )))
-    CRON.set_wakeup_next()
     print()
     print(datetime.datetime.now())
     print()
